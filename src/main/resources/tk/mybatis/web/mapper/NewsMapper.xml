@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.mybatis.web.mapper.newsMapper">
+    <resultMap type="tk.mybatis.web.model.News" id="newsMap">
+    <id property="id" column="id"/>
+    <result property="newsTitle" column="NEWS_TITLE"/>
+    <result property="content" column="CONTENT"/>
+    <result property="postedBy" column="POSTED_BY"/>
+    <result property="dateCreated" column="DATE_CREATED"/>
+    <result property="email" column="EMAIL"/>
+    </resultMap>
+    
+    <select id="selectByNews" resultType="tk.mybatis.web.model.News">
+		select * from news
+	</select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		insert into news(NEWS_TITLE, CONTENT,POSTED_BY,EMAIL)
+		values (#{newsTitle}, #{content},#{postedBy},#{email})
+	</insert>
+	
+	<select id="selectByPrimaryKey" resultType="tk.mybatis.web.model.News">
+      select * from news where ID = #{id}
+    </select>
+    
+</mapper>

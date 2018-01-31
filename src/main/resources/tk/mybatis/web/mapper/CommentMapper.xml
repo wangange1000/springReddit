@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.mybatis.web.mapper.commentMapper">
+  <resultMap type="tk.mybatis.web.model.Comment" id="commentMap">
+    <id property="id" column="id"/>
+    <result property="newsId" column="NEWS_ID"/>
+    <result property="email" column="EMAIL"/>
+    <result property="follower" column="FOLLOWER"/>
+    <result property="commentary" column="COMMENTARY"/>
+    <result property="dateCreated" column="DATE_CREATED"/>
+    </resultMap>
+
+  <select id="selectByNewsId" resultType="tk.mybatis.web.model.Comment">
+	select * from comment where NEWS_ID = #{newsId}
+  </select>
+  
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+	insert into comment(NEWS_ID, FOLLOWER, COMMENTARY, EMAIL)
+	values (#{newsId}, #{follower}, #{commentary}, #{email})
+  </insert>
+
+</mapper>
